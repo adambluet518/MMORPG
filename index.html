@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Aetheria Online - MMORPG</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/characters.css">
+  <link rel="stylesheet" href="css/weather.css">
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+    <div id="ui-layer">
+      <div id="minimap"></div>
+      <div id="chat-box"></div>
+      <div id="action-bar"></div>
+      <div id="player-status"></div>
+      <div id="quest-tracker"></div>
+      <div id="inventory-panel" class="hidden"></div>
+      <div id="skill-tree-panel" class="hidden"></div>
+      <div id="world-map-panel" class="hidden"></div>
+    </div>
+  </div>
+  <div id="loading-screen">
+    <div id="loading-bar-container">
+      <div id="loading-bar"></div>
+      <span id="loading-text">Loading assets... 0%</span>
+    </div>
+  </div>
+
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- Bootstrap Entry Point -->
+  <script type="module">
+    import { bootstrap } from './js/integration/bootstrap.js';
+    window.addEventListener('DOMContentLoaded', () => {
+      bootstrap().catch(err => {
+        console.error('Bootstrap failed:', err);
+        document.getElementById('loading-text').textContent = 'Error loading game. Check console.';
+      });
+    });
+  </script>
+</body>
+</html>
